@@ -1,0 +1,927 @@
+:root {
+    --primary-color: #1A3C40;
+    --secondary-color: #141E27;
+    --accent-color: #D4AF37;
+    --accent-light: #E0C097;
+    --text-color: #F4F4F4;
+    --text-muted: #B0B0B0;
+    --bg-dark: #0F1519;
+    --glass-bg: rgba(26, 60, 64, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.3s ease;
+    --font-heading: 'Cairo', sans-serif;
+    --font-body: 'Amiri', serif;
+    --font-quran: 'Scheherazade New', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-heading);
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    direction: rtl;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll Progress */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* right explicitly for RTL to work properly width wise? actually mostly width works from left in browsers generally unless specified */
+    /* RTL width growth is tricky, usually stick to left:0, height. transform origin based on dir */
+    height: 4px;
+    background: var(--accent-color);
+    width: 0%;
+    z-index: 1001;
+    transition: width 0.1s;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.section {
+    padding: 4rem 0;
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(20, 30, 39, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-color);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.mobile-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: url('../assets/img/hero.png') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(20, 30, 39, 0.7), rgba(26, 60, 64, 0.8));
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.invocation-text {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.main-dua {
+    font-family: var(--font-quran);
+    font-size: 2.5rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.deceased-info {
+    background: var(--glass-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(5px);
+    margin-bottom: 3rem;
+    display: inline-block;
+}
+
+.deceased-info h2 {
+    color: var(--accent-color);
+    margin: 0.5rem 0;
+    font-size: 2rem;
+}
+
+.dates {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.cta-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color);
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Quran Section */
+.quran-section {
+    background: linear-gradient(to bottom, var(--bg-dark), #152024);
+}
+
+.quran-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.surah-select {
+    padding: 0.8rem 1.5rem;
+    background: var(--primary-color);
+    color: #fff;
+    border: 1px solid var(--accent-color);
+    border-radius: 50px;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    outline: none;
+    min-width: 200px;
+    min-height: 44px;
+    /* iOS touch target minimum */
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+}
+
+.action-btn {
+    padding: 0.8rem 2rem;
+    background: var(--accent-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 44px;
+    /* iOS touch target minimum */
+    -webkit-tap-highlight-color: transparent;
+}
+
+.action-btn:hover {
+    background: #c5a028;
+    transform: translateY(-2px);
+}
+
+.quran-display {
+    background: var(--glass-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+.quran-display.hidden {
+    display: none;
+}
+
+.quran-header {
+    margin-bottom: 2rem;
+}
+
+.bismillah {
+    font-family: var(--font-quran);
+    font-size: 2rem;
+    display: block;
+    margin-top: 1rem;
+    color: var(--accent-light);
+}
+
+.surah-text {
+    font-family: var(--font-quran);
+    font-size: 1.8rem;
+    line-height: 2.2;
+    margin-bottom: 2rem;
+    color: #fff;
+    white-space: pre-wrap;
+    /* Preserve formatting if any */
+}
+
+/* Audio Player Styling */
+.audio-container {
+    margin: 2rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+audio {
+    width: 80%;
+    max-width: 500px;
+    height: 40px;
+    border-radius: 20px;
+    filter: invert(0.9);
+    /* Makes default chrome player look better in dark mode */
+    opacity: 0.9;
+}
+
+/* Custom Audio Player Styling is complex x-browser, keeping generic but adjusted filters */
+
+.dedicate-btn {
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dedicate-btn:hover {
+    background: var(--accent-color);
+    color: var(--secondary-color);
+}
+
+/* Athkar Section */
+.athkar-section {
+    background-color: var(--bg-dark);
+}
+
+.athkar-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 0.8rem 2rem;
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+.tab-content {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: grid;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.zkr-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.zkr-card:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.zkr-text {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.zkr-count {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: var(--secondary-color);
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+}
+
+/* Tasbeeh Counter Specific */
+#tasbeeh.tab-content {
+    display: none;
+    /* Override grid default if active */
+}
+
+#tasbeeh.tab-content.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tasbeeh-container {
+    background: var(--primary-color);
+    padding: 3rem;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(26, 60, 64, 0.5);
+    border: 5px solid var(--accent-color);
+    position: relative;
+}
+
+.counter-display {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    /* Digital look */
+}
+
+.counter-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.count-btn {
+    padding: 1rem 2rem;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    active: scale(0.95);
+}
+
+.reset-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.tasbeeh-presets {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.preset-btn {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.preset-btn.active {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* Dua Section */
+.dua-section {
+    background-color: #111a21;
+    text-align: center;
+}
+
+.dua-slider {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dua-card {
+    display: none;
+    max-width: 800px;
+    animation: slideIn 0.5s ease;
+}
+
+.dua-card.active {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.dua-text {
+    font-family: var(--font-quran);
+    font-size: 2rem;
+    line-height: 1.8;
+}
+
+.dua-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nav-btn {
+    background: var(--primary-color);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.nav-btn:hover {
+    background: var(--accent-color);
+}
+
+.share-btn {
+    background: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Footer */
+.footer {
+    background: #080b0d;
+    padding: 3rem 0 1rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+}
+
+.quran-verse {
+    font-family: var(--font-quran);
+    font-size: 1.5rem;
+    color: var(--accent-light);
+    margin-bottom: 1rem;
+}
+
+.reminder {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #555;
+    border-top: 1px solid #222;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    /* Container & Spacing */
+    .container {
+        width: 95%;
+        padding: 1rem 0;
+    }
+
+    .section {
+        padding: 2rem 0;
+    }
+
+    /* Typography */
+    .main-dua {
+        font-size: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .invocation-text {
+        font-size: 1rem;
+    }
+
+    .deceased-name {
+        font-size: 1.5rem;
+    }
+
+    /* Navigation */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--secondary-color);
+        padding: 1rem;
+        text-align: center;
+        gap: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links.mobile-active {
+        display: flex;
+    }
+
+    .mobile-toggle {
+        display: block;
+        color: var(--accent-color);
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 6rem 1rem 3rem;
+    }
+
+    .deceased-info {
+        padding: 1rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .dates {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    /* Quran Section */
+    .quran-controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .surah-select,
+    .action-btn {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .quran-display {
+        padding: 1.5rem 1rem;
+    }
+
+    .surah-text {
+        font-size: 1.4rem;
+        line-height: 2;
+    }
+
+    .bismillah {
+        font-size: 1.5rem;
+    }
+
+    audio {
+        width: 100%;
+    }
+
+    /* Athkar Section */
+    .athkar-tabs {
+        gap: 0.5rem;
+    }
+
+    .tab-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .tab-content {
+        grid-template-columns: 1fr;
+    }
+
+    .zkr-card {
+        padding: 1.5rem;
+    }
+
+    .zkr-text {
+        font-size: 1.1rem;
+    }
+
+    /* Tasbeeh Counter - CRITICAL FIX */
+    .tasbeeh-container {
+        width: 250px;
+        height: 250px;
+        padding: 2rem;
+    }
+
+    .counter-display {
+        font-size: 3rem;
+    }
+
+    .count-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .tasbeeh-presets {
+        margin-top: 2rem;
+        gap: 0.5rem;
+    }
+
+    .preset-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* Dua Section */
+    .dua-text {
+        font-size: 1.5rem;
+        line-height: 1.8;
+        padding: 0 1rem;
+    }
+
+    .dua-controls {
+        flex-wrap: wrap;
+    }
+
+    .share-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .quran-verse {
+        font-size: 1.2rem;
+    }
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    /* Sadqa Info */
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    .info-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .info-card p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Extra Small Devices (phones < 480px) */
+@media (max-width: 480px) {
+    .main-dua {
+        font-size: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .deceased-name {
+        font-size: 1.3rem;
+    }
+
+    .tasbeeh-container {
+        width: 220px;
+        height: 220px;
+        padding: 1.5rem;
+    }
+
+    .counter-display {
+        font-size: 2.5rem;
+    }
+
+    .count-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .dua-text {
+        font-size: 1.3rem;
+    }
+
+    .surah-text {
+        font-size: 1.2rem;
+    }
+
+    .tab-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape Mode for Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 5rem 1rem 2rem;
+    }
+
+    .tasbeeh-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .counter-display {
+        font-size: 2.5rem;
+    }
+}

@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>صدقة جارية - دعاء وذكر</title>
+
+    <!-- Meta Definitions -->
+    <meta name="description"
+        content="موقع صدقة جارية يحتوي على قرآن كريم، أذكار، وأدعية للمتوفى. نسأل الله أن يتقبله بقبول حسن.">
+    <meta name="theme-color" content="#1A3C40">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&family=Scheherazade+New:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Navigation (Simple & Minimal) -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-moon"></i> <span>صدقة جارية</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">الرئيسية</a></li>
+                <li><a href="#quran">القرآن</a></li>
+                <li><a href="#athkar">الأذكار</a></li>
+                <li><a href="#dua">الدعاء</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <p class="invocation-text">بسم الله الرحمن الرحيم</p>
+            <h1 class="main-dua">"اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهُ وَاعْفُ عَنْهُ"</h1>
+
+            <div class="deceased-info">
+                <p>صدقة جارية على روح المغفور لها بإذن الله</p>
+                <h2 class="deceased-name">محمود عزمي العمري </h2>
+                <div class="dates">
+                   
+                    <span class="separator"></span>
+                    
+                </div>
+            </div>
+
+            <a href="#quran" class="cta-button">
+                <span>تلاوة القرآن</span>
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Quran Section -->
+    <section id="quran" class="section quran-section">
+        <div class="container">
+            <h2 class="section-title">القرآن الكريم</h2>
+            <p class="section-subtitle">اقرأ ما تيسر واهدِ الثواب</p>
+
+            <div class="quran-controls">
+                <select id="surah-select" class="surah-select">
+                    <option value="" disabled selected>اختر السورة...</option>
+                    <option value="fatiha">سورة الفاتحة</option>
+                    <option value="yasin">سورة يس</option>
+                    <option value="mulk">سورة الملك</option>
+                    <option value="kahf">سورة الكهف</option>
+                    <option value="rahman">سورة الرحمن</option>
+                </select>
+                <button id="read-btn" class="action-btn">استعراض السورة</button>
+            </div>
+
+            <div id="quran-display" class="quran-display hidden">
+                <div class="quran-header">
+                    <h3 id="surah-title"></h3>
+                    <span class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+                </div>
+
+                <!-- Audio Player -->
+                <div class="audio-container">
+                    <audio id="quran-player" controls>
+                        <source src="" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الصوت.
+                    </audio>
+                </div>
+
+                <div id="surah-text" class="surah-text amiri-font">
+                    <!-- Text will be injected via JS -->
+                </div>
+                <div class="dedicate-action">
+                    <button class="dedicate-btn" onclick="showNotification('تقبل الله منك، وكتب أجرها للمتوفى')">
+                        <i class="fas fa-heart"></i> وهب الثواب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Athkar Section -->
+    <section id="athkar" class="section athkar-section">
+        <div class="container">
+            <h2 class="section-title">روضة الذاكرين</h2>
+
+            <div class="athkar-tabs">
+                <button class="tab-btn active" data-target="morning">أذكار الصباح</button>
+                <button class="tab-btn" data-target="evening">أذكار المساء</button>
+                <button class="tab-btn" data-target="tasbeeh">المسبحة الإلكترونية</button>
+            </div>
+
+            <div class="athkar-content">
+                <!-- Morning Athkar -->
+                <div id="morning" class="tab-content active">
+                    <div class="zkr-card">
+                        <p class="zkr-text">"اللّهُمَّ بِكَ أَصْبَحْنا وَبِكَ أَمْسَيْنا، وَبِكَ نَحْيا وَبِكَ نَمُوتُ
+                            وَإِلَيْكَ النُّشُور"</p>
+                        <span class="zkr-count">1 مرة</span>
+                    </div>
+                    <div class="zkr-card">
+                        <p class="zkr-text">"أَصْبَحْنا وَأَصْبَحَ المُلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ اللّهُ
+                            وَحدَهُ لا شَريكَ لهُ..."</p>
+                        <span class="zkr-count">1 مرة</span>
+                    </div>
+                    <!-- More can be added -->
+                </div>
+
+                <!-- Evening Athkar -->
+                <div id="evening" class="tab-content">
+                    <div class="zkr-card">
+                        <p class="zkr-text">"اللّهُمَّ بِكَ أَمْسَيْنا وَبِكَ أَصْبَحْنا، وَبِكَ نَحْيا وَبِكَ نَمُوتُ
+                            وَإِلَيْكَ الْمَصِير"</p>
+                        <span class="zkr-count">1 مرة</span>
+                    </div>
+                    <div class="zkr-card">
+                        <p class="zkr-text">"أَمْسَيْنا وَأَمْسَى المُلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ اللّهُ
+                            وَحدَهُ لا شَريكَ لهُ..."</p>
+                        <span class="zkr-count">1 مرة</span>
+                    </div>
+                </div>
+
+                <!-- Tasbeeh Counter -->
+                <div id="tasbeeh" class="tab-content">
+                    <div class="tasbeeh-container">
+                        <div class="counter-display">
+                            <span id="counter-value">0</span>
+                        </div>
+                        <div class="counter-controls">
+                            <button id="count-btn" class="count-btn">سبحان الله</button>
+                            <button id="reset-btn" class="reset-btn"><i class="fas fa-redo"></i></button>
+                        </div>
+                        <div class="tasbeeh-presets">
+                            <button class="preset-btn active" data-text="سبحان الله">سبحان الله</button>
+                            <button class="preset-btn" data-text="الحمد لله">الحمد لله</button>
+                            <button class="preset-btn" data-text="الله أكبر">الله أكبر</button>
+                            <button class="preset-btn" data-text="أستغفر الله">أستغفر الله</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dua Section -->
+    <section id="dua" class="section dua-section">
+        <div class="container">
+            <h2 class="section-title">دعاء للمتوفى</h2>
+            <div class="dua-slider">
+                <div class="dua-card active">
+                    <p class="dua-text">"اللهم ابدله دارا خيرا من داره واهلا خيرا من اهله وادخله الجنة واعذه من
+                        عذاب
+                        القبر ومن عذاب النار"</p>
+                </div>
+                <div class="dua-card">
+                    <p class="dua-text">"اللهم عامله بما انت اهله ولا تعامله بما هو اهله"</p>
+                </div>
+                <div class="dua-card">
+                    <p class="dua-text">"اللهم اجزيه عن الاحسان احسانا وعن الاساءة عفوا وغفرانا"</p>
+                </div>
+            </div>
+            <div class="dua-controls">
+                <button id="prev-dua" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                <button id="share-dua" class="share-btn"><i class="fas fa-share-alt"></i> مشاركة</button>
+                <button id="next-dua" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sadqa Info Section -->
+    <section class="section sadqa-info">
+        <div class="container">
+            <div class="info-card glass-panel">
+                <i class="fas fa-hand-holding-heart icon"></i>
+                <h3>فضل الصدقة الجارية</h3>
+                <p>قال رسول الله ﷺ: "إذا مات ابن آدم انقطع عمله إلا من ثلاث: صدقة جارية، أو علم ينتفع به، أو ولد صالح
+                    يدعو له".</p>
+                <div class="intention-box">
+                    <p>اللهم اجعل هذا العمل خالصاً لوجهك الكريم، وثقّل به ميزان حسنات أمتك الفقيرة إليك.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="quran-verse">"رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَلِمَن دَخَلَ بَيْتِيَ مُؤْمِنًا"</p>
+                <p class="reminder">نسألكم الدعاء</p>
+                <div class="copyright">
+                    &copy; 2026 تم التطوير بواسطة <a href="https://www.instagram.com/azmy_ehab_?igsh=MWlhYzYxenc0ZnZ1aw==" target="_blank">عزمي إيهاب</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
